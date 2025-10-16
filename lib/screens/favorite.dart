@@ -13,7 +13,7 @@ class Favorites extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Favoritos"),
         centerTitle: true,
-        backgroundColor: Colors.black87,
+        backgroundColor: Colors.blue,
       ),
       backgroundColor: Colors.black87,
       body: BlocBuilder<FavoriteBloc, Map<String, Video>>(

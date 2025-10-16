@@ -22,7 +22,6 @@ class _HomeState extends State<Home> {
     super.initState();
     _scrollController = ScrollController();
 
-    // Carregar vídeos aleatórios ao iniciar o app
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<VideosBloc>().loadRandomVideos();
     });
@@ -75,7 +74,6 @@ class _HomeState extends State<Home> {
               color: Colors.white),
           IconButton(
               onPressed: () {
-                // Carregar novos vídeos aleatórios
                 context.read<VideosBloc>().loadRandomVideos();
               },
               icon: const Icon(Icons.shuffle),
@@ -86,7 +84,6 @@ class _HomeState extends State<Home> {
                 String? result =
                     await showSearch(context: context, delegate: DataSearch());
                 if (result != null) {
-                  // ignore: use_build_context_synchronously
                   context.read<VideosBloc>().search(result);
                 }
               },
@@ -96,7 +93,6 @@ class _HomeState extends State<Home> {
       backgroundColor: Colors.black,
       body: BlocBuilder<VideosBloc, List<Video>>(
         builder: (context, videoState) {
-          // Se está carregando e não há vídeos ainda (primeira carga)
           if (videoState.isEmpty && context.read<VideosBloc>().isLoading) {
             return Center(
               child: Column(
@@ -115,7 +111,6 @@ class _HomeState extends State<Home> {
             );
           }
 
-          // Se não há vídeos e não está carregando
           if (videoState.isEmpty) {
             return Center(
               child: Column(

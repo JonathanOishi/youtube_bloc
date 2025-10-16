@@ -60,7 +60,6 @@ class Videotile extends StatelessWidget {
                   Center(
                     child: Container(
                       decoration: BoxDecoration(
-                        // ignore: deprecated_member_use
                         color: Colors.black.withOpacity(0.7),
                         shape: BoxShape.circle,
                       ),

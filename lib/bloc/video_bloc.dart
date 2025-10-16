@@ -8,7 +8,6 @@ class VideosBloc extends Cubit<List<Video>> {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  // Lista de termos populares para busca inicial
   final List<String> _popularSearchTerms = [
     'music videos',
     'comedy',
@@ -36,7 +35,6 @@ class VideosBloc extends Cubit<List<Video>> {
 
     try {
       _isLoading = true;
-      // Escolhe um termo aleatório da lista
       final random = Random();
       final randomTerm =
           _popularSearchTerms[random.nextInt(_popularSearchTerms.length)];
@@ -46,38 +44,34 @@ class VideosBloc extends Cubit<List<Video>> {
       _isLoading = false;
     } catch (e) {
       _isLoading = false;
-      // Em caso de erro, mantém o estado atual
     }
   }
 
   void search(String searchTerm) async {
-    if (_isLoading) return; // Evita múltiplas requisições simultâneas
+    if (_isLoading) return;
 
     try {
       _isLoading = true;
-      List<Video> videos = await api.search(searchTerm); // Nova busca
+      List<Video> videos = await api.search(searchTerm);
       emit(videos);
       _isLoading = false;
     } catch (e) {
       _isLoading = false;
-      // Em caso de erro, mantém o estado atual
     }
   }
 
   Future<void> loadMoreVideos() async {
-    if (_isLoading) return; // Evita múltiplas requisições simultâneas
+    if (_isLoading) return;
 
     try {
       _isLoading = true;
       List<Video> moreVideos = await api.nextPage();
       List<Video> currentVideos = List.from(state);
-      currentVideos
-          .addAll(moreVideos); // Adiciona novos vídeos à lista existente
+      currentVideos.addAll(moreVideos);
       emit(currentVideos);
       _isLoading = false;
     } catch (e) {
       _isLoading = false;
-      // Em caso de erro, mantém o estado atual
     }
   }
 }

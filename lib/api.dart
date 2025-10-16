@@ -2,13 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:youtube_bloc_pattern/models/video.dart';
 
-// 🔐 CONFIGURAÇÃO DE API KEY
-// Para produção, use variáveis de ambiente ou arquivo .env
-// ignore: constant_identifier_names
-const API_KEY = String.fromEnvironment(
-  'YOUTUBE_API_KEY',
-  defaultValue: 'SUBSTITUA_PELA_SUA_API_KEY', // ⚠️ Configure sua API Key aqui
-);
+const API_KEY = 'SUA_CHAVE_API_AQUI';
 
 class Api {
   String _search = '';
@@ -32,7 +26,7 @@ class Api {
 
   Future<List<Video>> nextPage() async {
     if (_nextToken.isEmpty || !_hasMorePages) {
-      return []; // Não há mais páginas
+      return [];
     }
 
     http.Response response = await http.get(
@@ -47,19 +41,20 @@ class Api {
     if (response.statusCode == 200) {
       var decoded = json.decode(response.body);
 
-      // Verificar se há erro na resposta da API
       if (decoded['error'] != null) {
-        throw Exception('Erro da API: ${decoded['error']['message']}');
+        String errorMessage =
+            decoded['error']['message'] ?? 'Erro desconhecido';
+        String errorCode = decoded['error']['code']?.toString() ?? 'N/A';
+
+        throw Exception('Erro da API: $errorMessage (Código: $errorCode)');
       }
 
       _nextToken = decoded['nextPageToken'] ?? '';
 
-      // Se não há nextPageToken, não há mais páginas
       if (_nextToken.isEmpty) {
         _hasMorePages = false;
       }
 
-      // Verificar se há itens
       if (decoded['items'] == null || decoded['items'].isEmpty) {
         return [];
       }
@@ -69,12 +64,17 @@ class Api {
 
       return videos;
     } else {
-      throw Exception('Failed to load videos: ${response.statusCode}');
+      try {
+        var errorDecoded = json.decode(response.body);
+        if (errorDecoded['error'] != null) {
+          String errorMessage =
+              errorDecoded['error']['message'] ?? 'Erro desconhecido';
+          throw Exception('Erro da API: $errorMessage');
+        }
+      } catch (e) {}
+
+      throw Exception(
+          'Failed to load videos: ${response.statusCode} - ${response.reasonPhrase}');
     }
   }
 }
-
-/* "https://www.googleapis.com/youtube/v3/search?part=snippet&q=$search&type=video&key=$API_KEY&maxResults=10"
-"https://www.googleapis.com/youtube/v3/search?part=snippet&q=$_search&type=video&key=$API_KEY&maxResults=10&pageToken=$_nextToken"
-"http://suggestqueries.google.com/complete/search?hl=en&ds=yt&client=youtube&hjson=t&cp=1&q=$search&format=5&alt=json"
-*/

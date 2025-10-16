@@ -48,7 +48,9 @@ flutter pub get
 ```bash
 flutter run
 ```
+## 📸 Preview
 
+<img src="https://iili.io/Kkl7d3F.md.png" alt="App Preview" width="300">
 
 ---
 ⭐ **Gostou do projeto? Deixe uma estrela no GitHub!**
