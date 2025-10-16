@@ -50,7 +50,9 @@ flutter run
 ```
 ## 📸 Preview
 
-<img src="https://iili.io/Kkl7d3F.md.png" alt="App Preview" width="300">
+<div align="center">
+  <img src="https://iili.io/Kkl7d3F.md.png" alt="App Preview" width="600">
+</div>
 
 ---
 ⭐ **Gostou do projeto? Deixe uma estrela no GitHub!**
