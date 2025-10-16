@@ -43,3 +43,37 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# 🔐 SECURITY - API Keys and Secrets
+.env
+.env.local
+.env.production
+.env.staging
+*.key
+*.pem
+*.p12
+*.keystore
+key.properties
+
+# 📱 Platform specific
+ios/Runner/GoogleService-Info.plist
+android/app/google-services.json
+
+# 🗂️ IDE and Editor files
+.vscode/settings.json
+.vscode/launch.json
+*.sublime-project
+*.sublime-workspace
+
+# 📊 Analytics and Crash Reports
+*.dSYM.zip
+*.dSYM
+*.crash
+
+# 🧪 Test coverage
+coverage/
+test/coverage/
+
+# 📦 Dependencies
+.packages
+.package_extensions
