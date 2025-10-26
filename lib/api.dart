@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:youtube_bloc_pattern/models/video.dart';
 
-const API_KEY = 'SUA_CHAVE_DE_API_AQUI';
+const API_KEY = 'sua_api_key_aqui';
 
 class Api {
   String _search = '';
@@ -59,8 +59,17 @@ class Api {
         return [];
       }
 
-      List<Video> videos =
-          decoded['items'].map<Video>((item) => Video.fromJson(item)).toList();
+      List<Video> videos = [];
+      for (var item in decoded['items']) {
+        if (item != null && item['id'] != null && item['snippet'] != null) {
+          try {
+            Video video = Video.fromJson(item);
+            videos.add(video);
+          } catch (e) {
+            print('Erro ao processar vídeo: $e');
+          }
+        }
+      }
 
       return videos;
     } else {
