@@ -51,11 +51,12 @@ flutter run
 ## 📸 Preview
 
 <div align="center">
-  <img src="https://freeimage.host/i/K4XUILJ" alt="App Preview" width="300">
-</div>
-
-<div align="center">
-  <img src="https://freeimage.host/i/K4XUzXa" alt="App Preview" width="300">
+  <a href="https://freeimage.host/">
+    <img src="https://iili.io/K4XUILJ.png" alt="K4XUILJ.png" border="0" width="300" />
+  </a>
+   <a href="https://freeimage.host/i/K4XUzXa">
+    <img src="https://iili.io/K4XUzXa.md.png" alt="K4XUzXa.md.png" border="0" width="300">
+  </a>
 </div>
 
 ---
