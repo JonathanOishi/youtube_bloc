@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:youtube_bloc_pattern/models/video.dart';
 
-const API_KEY = 'SUA_CHAVE_API_AQUI';
+const API_KEY = 'SUA_CHAVE_DE_API_AQUI';
 
 class Api {
   String _search = '';
@@ -71,7 +71,9 @@ class Api {
               errorDecoded['error']['message'] ?? 'Erro desconhecido';
           throw Exception('Erro da API: $errorMessage');
         }
-      } catch (e) {}
+      } catch (e) {
+        // Ignorar erros de parsing e lançar a exceção genérica abaixo
+      }
 
       throw Exception(
           'Failed to load videos: ${response.statusCode} - ${response.reasonPhrase}');
