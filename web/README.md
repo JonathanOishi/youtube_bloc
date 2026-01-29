@@ -39,7 +39,7 @@ After building, deploy the contents of `build/web` to your web server or hosting
 The app is configured as a Progressive Web App (PWA) with:
 - Installable on desktop and mobile
 - Offline capability (via service worker)
-- Customizable theme color (#0175C2 - Flutter blue)
+- YouTube-themed red color scheme (#FF0000)
 - YouTube-themed play button icons
 
 ## Notes
