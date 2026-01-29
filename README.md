@@ -2,6 +2,8 @@
 
 Um aplicativo Flutter que replica a experiência do YouTube com busca, reprodução de vídeos e sistema de favoritos. Desenvolvido com arquitetura BLoC para gerenciamento de estado reativo.
 
+**Plataformas suportadas:** 📱 Android | 🍎 iOS | 🌐 Web
+
 ## 📱 O que é o App
 
 Este é um **clone do YouTube** que permite:
@@ -46,8 +48,29 @@ flutter pub get
 
 4. **Execute o app:**
 ```bash
+# Mobile (Android/iOS)
 flutter run
+
+# Web
+flutter run -d chrome
+# ou
+flutter run -d web-server
 ```
+
+## 🌐 Executar na Web
+
+O aplicativo agora suporta a plataforma web! Para compilar e executar como website:
+
+```bash
+# Build para produção
+flutter build web
+
+# Os arquivos compilados estarão em build/web/
+# Deploy em qualquer servidor web ou serviço de hospedagem
+```
+
+O app está configurado como PWA (Progressive Web App) e pode ser instalado no navegador.
+
 ## 📸 Preview
 
 <div align="center">
